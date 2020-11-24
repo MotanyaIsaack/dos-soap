@@ -93,48 +93,38 @@ require_once 'config/dbconn.php';
     <div class="container">
         <div class="row justify-content-center mt-2">
             <div class="col-md-6 bg-light p-3">
-                <form method="POST" action='scripts/register-student.php'>
-                    <p class="lead">Register</p>
+                <form method="POST">
+                    <p class="lead">Search for student</p>
                     <div class="form-group">
                         <input name='student_id' type="text" class="form-control" id="student_id" placeholder="Student ID" style="border-radius:0">
                         <small id="student_id-helpline" class="text-muted">
-                            Please enter your fullname
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input name='full_name' type="text" class="form-control" id="full_name" placeholder="Full name" style="border-radius:0">
-                        <small id="fullname-helpline" class="text-muted">
-                            Please enter your fullname
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" style="border-radius:0" placeholder="Enter email">
-                        <small id="email-helpline" class="text-muted">
-                            Please enter your email
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input name="phone" type="number" class="form-control" id="phone" style="border-radius:0" placeholder="Phone">
-                        <small id="phone-helpline" class="text-muted">
-                            Please enter your phone number
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input name="address" type="text" class="form-control" id="address" style="border-radius:0" placeholder="Address">
-                        <small id="address-helpline" class="text-muted">
-                            Please enter your address
+                            Please enter the students ID
                         </small>
                     </div>
 
-                    <div class="form-group">
-                        <input name="entry_points" type="text" class="form-control" id="entry_points" style="border-radius:0" placeholder="Entry Point">
-                        <small id="address-helpline" class="text-muted">
-                            Please enter your entry points
-                        </small>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary shadow" style="border-radius:0">Register</button>
+                    <input name="search-student" type="submit" value="Search" class="btn btn-primary shadow" style="border-radius:0"></input>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-6 bg-light p-3">
+                <?php
+                if (isset($_POST['search-student'])) {
+                    require 'lib/nusoap.php';
+                    #pass wsdl file address
+                    $client = new nusoap_client("http://localhost/School/year-four/distributed-objects/dos-soap/soap-server.php?wsdl",);
+
+                    $student_id = $_POST['student_id'];
+                    $client->call('getStudentDetails', array("student_id" => $student_id));
+                    $server_response = $client->response;
+                    echo 'Response:<br>';
+                    echo '<br>';
+                    echo $server_response;
+                }
+
+                ?>
             </div>
         </div>
     </div>

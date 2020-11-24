@@ -54,14 +54,20 @@ function retrieveStudent($student_id, $mysqli)
             if ($result->num_rows == 1) {
                 /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
                 $row = $result->fetch_array(MYSQLI_ASSOC);
-                return [
-                    "Student ID : " . $row["student_id"],
-                    "Student Name: " . $row["full_name"],
-                    "Student Email: " . $row["email"],
-                    "Student Phone: " . $row["phone"],
-                    "Student Address: " . $row["address"],
-                    "Student Entry Points: " . $row["entry_points"],
-                ];
+                return ("<p style='font-size:20px'>
+                    Student ID : " . $row["student_id"] . "<br>" .
+                    "Student Name: " . $row["full_name"] . "<br>" .
+                    "Student Email: " . $row["email"] . "<br>" .
+                    "Student Phone: " . $row["phone"] . "<br>" .
+                    "Student Address: " . $row["address"] . "<br>" .
+                    "Student Entry Points: " . $row["entry_points"] . "<br></p>");
+                // "Student ID : " . $row["student_id"],
+                // "Student Name: " . $row["full_name"],
+                // "Student Email: " . $row["email"],
+                // "Student Phone: " . $row["phone"],
+                // "Student Address: " . $row["address"],
+                // "Student Entry Points: " . $row["entry_points"],
+
                 // Retrieve individual field value
                 // $student_id = $row["student_id"];
                 // $full_name = $row["full_name"];
