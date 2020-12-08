@@ -114,7 +114,7 @@ require_once 'config/dbconn.php';
                 if (isset($_POST['search-student'])) {
                     require 'lib/nusoap.php';
                     #pass wsdl file address
-                    $client = new nusoap_client("http://localhost/School/year-four/distributed-objects/dos-soap/soap-server.php?wsdl",);
+                    $client = new nusoap_client("http://localhost/School/year-four/distributed-objects/dos-soap/soap-exercise/soap-server.php?wsdl",);
 
                     $student_id = $_POST['student_id'];
                     $client->call('getStudentDetails', array("student_id" => $student_id));
