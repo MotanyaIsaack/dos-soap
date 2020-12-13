@@ -14,7 +14,7 @@ class AddSuspendedToCoursesTable extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->boolean('suspended')->after('name');
+            $table->boolean('suspended')->default(0)->after('name');
         });
     }
 

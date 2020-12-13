@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    # Mass assignment
     protected $fillable = [
         'student_id',
         'full_name',
