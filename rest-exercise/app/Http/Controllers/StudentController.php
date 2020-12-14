@@ -28,7 +28,7 @@ class StudentController extends Controller
     public function create()
     {
         // dd(Student::with('course')->get());
-        $students = Student::all()->where('suspended', 'false');
+        $students = Student::with('course')->where('suspended', 'false')->get();
         $courses = Course::all()->where('suspended', 'false');
         return view('students.create', ['students' => $students, 'courses' => $courses]);
     }
